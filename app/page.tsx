@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
@@ -38,13 +39,14 @@ export default function Home() {
 
         syllabaiType: "AI-Powered Learning Platform",
         syllabaiDescription:
-          "An AI-powered education platform designed to create personalized and useful learning experiences for students and instructors.",
-        comingSoon: "Case study coming soon →",
+          "An AI-supported academic platform designed for students and instructors. It brings courses, deadlines, announcements, feedback and syllabus information into one experience, while an AI assistant helps users interact with course content.",
 
         agenticType: "AI & Document Intelligence",
         agenticDescription:
-          "A document analysis application that extracts summaries, keywords, entities and key findings from uploaded PDF documents.",
-        github: "View on GitHub →",
+          "An intelligent document analysis system that processes PDF, TXT and DOCX files and generates structured outputs including summaries, categories, keywords, named entities and key findings.",
+
+        github: "GitHub",
+        liveDemo: "Live Demo",
       },
 
       experience: {
@@ -108,13 +110,14 @@ export default function Home() {
 
         syllabaiType: "Yapay Zekâ Destekli Eğitim Platformu",
         syllabaiDescription:
-          "Öğrenciler ve eğitmenler için daha kişiselleştirilmiş ve verimli öğrenme deneyimleri oluşturmayı amaçlayan yapay zekâ destekli bir eğitim platformu.",
-        comingSoon: "Proje detayları yakında →",
+          "Öğrenciler ve eğitmenler için geliştirilen yapay zekâ destekli akademik bir platform. Dersler, teslim tarihleri, duyurular, geri bildirimler ve ders içeriklerini tek deneyimde bir araya getirirken, AI asistanı kullanıcıların ders içerikleriyle etkileşim kurmasını sağlıyor.",
 
         agenticType: "Yapay Zekâ & Doküman Analizi",
         agenticDescription:
-          "Yüklenen PDF dokümanlarından özet, anahtar kelimeler, varlıklar ve önemli bulgular çıkaran bir doküman analiz uygulaması.",
-        github: "GitHub'da görüntüle →",
+          "PDF, TXT ve DOCX dosyalarını analiz ederek özet, kategori, anahtar kelimeler, adlandırılmış varlıklar ve önemli bulgular gibi yapılandırılmış çıktılar oluşturan akıllı bir doküman analiz sistemi.",
+
+        github: "GitHub",
+        liveDemo: "Canlı Demo",
       },
 
       experience: {
@@ -177,7 +180,6 @@ export default function Home() {
               </a>
             </div>
 
-            {/* LANGUAGE SWITCH */}
             <div className="flex rounded-full border border-black/10 p-1 text-xs">
               <button
                 onClick={() => setLanguage("tr")}
@@ -292,103 +294,179 @@ export default function Home() {
           </div>
         </div>
       </section>
+{/* PROJECTS */}
+<section
+  id="projects"
+  className="mx-auto max-w-6xl scroll-mt-24 px-6 py-28"
+>
+  <div className="mb-14">
+    <p className="text-sm uppercase tracking-[0.2em] text-black/40">
+      {t.projects.label}
+    </p>
 
-      {/* PROJECTS */}
-      <section
-        id="projects"
-        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-28"
-      >
-        <div className="mb-14">
-          <p className="text-sm uppercase tracking-[0.2em] text-black/40">
-            {t.projects.label}
+    <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+      {t.projects.title}
+    </h2>
+  </div>
+
+  <div className="space-y-8">
+
+    {/* SYLLABAI */}
+    <article className="overflow-hidden rounded-[32px] border border-black/10 bg-white">
+      <div className="grid lg:grid-cols-2">
+
+        {/* IMAGE */}
+        <div className="flex items-center bg-[#f3f5f8] p-5 sm:p-8">
+          <div className="group w-full overflow-hidden rounded-[20px] border border-black/10 bg-white shadow-sm">
+            <div className="aspect-[16/10] overflow-hidden">
+              <Image
+                src="/projects/syllabai-dashboard.png"
+                alt="SyllabAI student dashboard"
+                width={1800}
+                height={1000}
+                className="h-full w-full object-cover object-left transition duration-500 group-hover:scale-[1.02]"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* CONTENT */}
+        <div className="flex flex-col justify-center p-8 sm:p-12">
+          <p className="text-sm text-black/40">
+            {t.projects.syllabaiType}
           </p>
 
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
-            {t.projects.title}
-          </h2>
+          <h3 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+            SyllabAI
+          </h3>
+
+          <p className="mt-6 max-w-xl leading-7 text-black/60">
+            {t.projects.syllabaiDescription}
+          </p>
+
+          <div className="mt-7 flex flex-wrap gap-2">
+            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+              Next.js
+            </span>
+
+            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+              TypeScript
+            </span>
+
+            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+              AI
+            </span>
+
+            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+              UI/UX
+            </span>
+          </div>
+
+          <div className="mt-9">
+            <a
+              href="https://github.com/selinkeskinn/syllabai-final"
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 text-sm font-medium"
+            >
+              {t.projects.github}
+
+              <span className="transition-transform duration-200 group-hover:translate-x-1">
+                ↗
+              </span>
+            </a>
+          </div>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {/* SYLLABAI */}
-          <article className="group flex min-h-[430px] flex-col justify-between rounded-[32px] border border-black/10 bg-white p-8 transition duration-300 hover:-translate-y-2 hover:shadow-xl">
-            <div>
-              <p className="text-sm text-black/40">
-                {t.projects.syllabaiType}
-              </p>
+      </div>
+    </article>
 
-              <h3 className="mt-4 text-3xl font-semibold tracking-tight">
-                SyllabAI
-              </h3>
 
-              <p className="mt-6 leading-7 text-black/60">
-                {t.projects.syllabaiDescription}
-              </p>
-            </div>
+    {/* AGENTIC DOCUMENT UNDERSTANDING */}
+    <article className="overflow-hidden rounded-[32px] border border-black/10 bg-white">
+      <div className="grid lg:grid-cols-2">
 
-            <div>
-              <div className="flex flex-wrap gap-2">
-                <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-                  Next.js
-                </span>
+        {/* CONTENT */}
+        <div className="order-2 flex flex-col justify-center p-8 sm:p-12 lg:order-1">
+          <p className="text-sm text-black/40">
+            {t.projects.agenticType}
+          </p>
 
-                <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-                  TypeScript
-                </span>
+          <h3 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+            Agentic Document Understanding
+          </h3>
 
-                <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-                  AI
-                </span>
-              </div>
+          <p className="mt-6 max-w-xl leading-7 text-black/60">
+            {t.projects.agenticDescription}
+          </p>
 
-              <p className="mt-8 text-sm font-medium">
-                {t.projects.comingSoon}
-              </p>
-            </div>
-          </article>
+          <div className="mt-7 flex flex-wrap gap-2">
+            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+              Python
+            </span>
 
-          {/* AGENTIC DOCUMENT UNDERSTANDING */}
-          <article className="group flex min-h-[430px] flex-col justify-between rounded-[32px] border border-black/10 bg-white p-8 transition duration-300 hover:-translate-y-2 hover:shadow-xl">
-            <div>
-              <p className="text-sm text-black/40">
-                {t.projects.agenticType}
-              </p>
+            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+              Streamlit
+            </span>
 
-              <h3 className="mt-4 text-3xl font-semibold tracking-tight">
-                Agentic Document Understanding
-              </h3>
+            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+              NLP
+            </span>
 
-              <p className="mt-6 leading-7 text-black/60">
-                {t.projects.agenticDescription}
-              </p>
-            </div>
+            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+              AI
+            </span>
+          </div>
 
-            <div>
-              <div className="flex flex-wrap gap-2">
-                <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-                  Python
-                </span>
+          <div className="mt-9 flex flex-wrap gap-6">
+            <a
+              href="https://agentic-document-understanding-system.streamlit.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 text-sm font-medium"
+            >
+              {t.projects.liveDemo}
 
-                <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-                  Streamlit
-                </span>
+              <span className="transition-transform duration-200 group-hover:translate-x-1">
+                ↗
+              </span>
+            </a>
 
-                <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-                  NLP
-                </span>
-              </div>
+            <a
+              href="https://github.com/selinkeskinn/agentic-document-understanding-system"
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-center gap-2 text-sm font-medium"
+            >
+              {t.projects.github}
 
-              <a
-                href="https://github.com/selinkeskinn/agentic-document-understanding-system"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-8 inline-block text-sm font-medium transition group-hover:translate-x-1"
-              >
-                {t.projects.github}
-              </a>
-            </div>
-          </article>
+              <span className="transition-transform duration-200 group-hover:translate-x-1">
+                ↗
+              </span>
+            </a>
+          </div>
         </div>
-      </section>
+
+        {/* IMAGE */}
+        <div className="order-1 flex items-center bg-[#f3f5f8] p-5 sm:p-8 lg:order-2">
+          <div className="group w-full overflow-hidden rounded-[20px] border border-black/10 bg-white shadow-sm">
+            <div className="aspect-[16/10] overflow-hidden">
+              <Image
+                src="/projects/agentic-document.png"
+                alt="Agentic Document Understanding System"
+                width={1800}
+                height={1000}
+                className="h-full w-full object-cover object-left-top transition duration-500 group-hover:scale-[1.02]"
+              />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+  </div>
+</section>
 
       {/* EXPERIENCE */}
       <section
