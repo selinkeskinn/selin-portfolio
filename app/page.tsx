@@ -26,14 +26,14 @@ export default function Home() {
         cv: "View CV",
       },
 
-      about: {
-        label: "About",
-        title: "I enjoy turning ideas into useful software.",
-        first:
-          "I'm a Software Engineering graduate interested in software development, artificial intelligence and data. I enjoy learning new technologies and using them to build products that solve meaningful problems.",
-        second:
-          "My experience includes C#, Java, Python, TypeScript, Next.js, .NET, Spring Boot and enterprise software development.",
-      },
+     about: {
+  label: "About",
+  title: "I build software that solves real-world needs.",
+  first:
+    "I'm a Software Engineering graduate focused on software development, artificial intelligence and data. I turn technical ideas into simple, functional and user-focused products.",
+  second:
+    "My experience includes C#, Java, Python, TypeScript, Next.js, .NET, Spring Boot and enterprise software development.",
+},
 
       projects: {
         label: "Selected Work",
@@ -99,13 +99,13 @@ export default function Home() {
       },
 
       about: {
-        label: "Hakkımda",
-        title: "Fikirleri kullanışlı yazılımlara dönüştürmeyi seviyorum.",
-        first:
-          "Yazılım Mühendisliği mezunuyum. Yazılım geliştirme, yapay zekâ ve veri alanlarıyla ilgileniyorum. Yeni teknolojiler öğrenmeyi ve bunları gerçek problemlere çözüm üreten ürünler geliştirmek için kullanmayı seviyorum.",
-        second:
-          "C#, Java, Python, TypeScript, Next.js, .NET, Spring Boot ve kurumsal yazılım geliştirme alanlarında deneyim sahibiyim.",
-      },
+  label: "Hakkımda",
+  title: "Gerçek ihtiyaçlara çözüm üreten yazılımlar geliştiriyorum.",
+  first:
+    "Yazılım Mühendisliği mezunuyum. Yazılım geliştirme, yapay zekâ ve veri alanlarında çalışıyor; teknik fikirleri sade, işlevsel ve kullanıcı odaklı ürünlere dönüştürmeye odaklanıyorum.",
+  second:
+    "C#, Java, Python, TypeScript, Next.js, .NET, Spring Boot ve kurumsal yazılım geliştirme alanlarında deneyim sahibiyim.",
+},
 
       projects: {
         label: "Seçili Çalışmalar",
