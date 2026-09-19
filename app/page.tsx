@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [language, setLanguage] = useState<"en" | "tr">("en");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const text = {
     en: {
@@ -13,6 +14,7 @@ export default function Home() {
         projects: "Projects",
         experience: "Experience",
         contact: "Contact",
+        menu: "Menu",
       },
 
       hero: {
@@ -84,6 +86,7 @@ export default function Home() {
         projects: "Projeler",
         experience: "Deneyim",
         contact: "İletişim",
+        menu: "Menü",
       },
 
       hero: {
@@ -155,74 +158,126 @@ export default function Home() {
   return (
     <main>
       {/* NAVBAR */}
-      <nav className="sticky top-0 z-50 border-b border-black/5 bg-[#f8f8f6]/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <a href="#" className="font-semibold tracking-tight">
-            Selin Keskin
-          </a>
+      <nav className="sticky top-0 z-50 border-b border-black/5 bg-[#f8f8f6]/90 backdrop-blur-md">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="flex items-center justify-between py-5">
+            <a
+              href="#"
+              className="font-semibold tracking-tight"
+              onClick={() => setMenuOpen(false)}
+            >
+              Selin Keskin
+            </a>
 
-          <div className="flex items-center gap-6">
-            <div className="hidden gap-8 text-sm md:flex">
-              <a href="#about" className="transition hover:opacity-50">
-                {t.nav.about}
-              </a>
+            <div className="flex items-center gap-3">
+              {/* DESKTOP MENU */}
+              <div className="hidden items-center gap-8 text-sm md:flex">
+                <a href="#about" className="transition hover:opacity-50">
+                  {t.nav.about}
+                </a>
 
-              <a href="#projects" className="transition hover:opacity-50">
-                {t.nav.projects}
-              </a>
+                <a href="#projects" className="transition hover:opacity-50">
+                  {t.nav.projects}
+                </a>
 
-              <a href="#experience" className="transition hover:opacity-50">
-                {t.nav.experience}
-              </a>
+                <a href="#experience" className="transition hover:opacity-50">
+                  {t.nav.experience}
+                </a>
 
-              <a href="#contact" className="transition hover:opacity-50">
-                {t.nav.contact}
-              </a>
-            </div>
+                <a href="#contact" className="transition hover:opacity-50">
+                  {t.nav.contact}
+                </a>
+              </div>
 
-            <div className="flex rounded-full border border-black/10 p-1 text-xs">
+              {/* LANGUAGE SWITCH */}
+              <div className="flex rounded-full border border-black/10 p-1 text-xs">
+                <button
+                  onClick={() => setLanguage("tr")}
+                  className={`rounded-full px-3 py-1.5 transition ${
+                    language === "tr"
+                      ? "bg-black text-white"
+                      : "hover:bg-black/5"
+                  }`}
+                >
+                  TR
+                </button>
+
+                <button
+                  onClick={() => setLanguage("en")}
+                  className={`rounded-full px-3 py-1.5 transition ${
+                    language === "en"
+                      ? "bg-black text-white"
+                      : "hover:bg-black/5"
+                  }`}
+                >
+                  EN
+                </button>
+              </div>
+
+              {/* MOBILE MENU BUTTON */}
               <button
-                onClick={() => setLanguage("tr")}
-                className={`rounded-full px-3 py-1.5 transition ${
-                  language === "tr"
-                    ? "bg-black text-white"
-                    : "hover:bg-black/5"
-                }`}
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="rounded-full border border-black/10 px-4 py-2 text-xs transition hover:bg-black hover:text-white md:hidden"
               >
-                TR
-              </button>
-
-              <button
-                onClick={() => setLanguage("en")}
-                className={`rounded-full px-3 py-1.5 transition ${
-                  language === "en"
-                    ? "bg-black text-white"
-                    : "hover:bg-black/5"
-                }`}
-              >
-                EN
+                {menuOpen ? "✕" : t.nav.menu}
               </button>
             </div>
           </div>
+
+          {/* MOBILE MENU */}
+          {menuOpen && (
+            <div className="border-t border-black/5 py-5 md:hidden">
+              <div className="flex flex-col gap-5 text-sm">
+                <a
+                  href="#about"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.about}
+                </a>
+
+                <a
+                  href="#projects"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.projects}
+                </a>
+
+                <a
+                  href="#experience"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.experience}
+                </a>
+
+                <a
+                  href="#contact"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t.nav.contact}
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
       {/* HERO */}
-      <section className="mx-auto flex min-h-[90vh] max-w-6xl items-center px-6 py-24">
+      <section className="mx-auto grid min-h-[90vh] max-w-6xl items-center gap-14 px-6 py-20 lg:grid-cols-[1.35fr_0.65fr] lg:py-24">
+        {/* HERO TEXT */}
         <div className="max-w-5xl">
-          <div className="mb-8 inline-flex items-center rounded-full border border-black/10 px-4 py-2 text-sm">
+          <div className="mb-8 inline-flex items-center rounded-full border border-black/10 px-4 py-2 text-xs sm:text-sm">
             {t.hero.badge}
           </div>
 
-          <h1 className="text-5xl font-semibold leading-[0.95] tracking-[-0.05em] sm:text-7xl md:text-8xl">
+          <h1 className="text-5xl font-semibold leading-[0.95] tracking-[-0.05em] sm:text-7xl lg:text-8xl">
             Selin Keskin
           </h1>
 
-          <p className="mt-8 max-w-3xl text-xl leading-8 text-black/60 sm:text-2xl sm:leading-9">
+          <p className="mt-8 max-w-3xl text-lg leading-8 text-black/60 sm:text-2xl sm:leading-9">
             {t.hero.description}
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-10 flex flex-wrap gap-3 sm:gap-4">
             <a
               href="#projects"
               className="rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition hover:scale-[1.03]"
@@ -265,14 +320,38 @@ export default function Home() {
             <span>.NET</span>
           </div>
         </div>
+
+        {/* PROFILE PHOTO */}
+        <div className="mx-auto w-full max-w-[320px] lg:max-w-[340px]">
+          <div className="group relative aspect-[4/5] overflow-hidden rounded-[32px] bg-black/5">
+            <Image
+  src="/projects/selin-profile.jpeg"
+  alt="Selin Keskin"
+  fill
+  priority
+  sizes="(max-width: 1024px) 320px, 340px"
+  className="object-cover object-[center_58%] transition duration-500 group-hover:scale-[1.02]"
+/>-cover transition duration-500 group-hover:scale-[1.02]"
+
+          </div>
+
+          <div className="mt-4 flex items-center justify-center gap-2 text-xs text-black/40">
+            <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+            <span>
+              {language === "tr"
+                ? "Yeni fırsatlara açığım"
+                : "Open to opportunities"}
+            </span>
+          </div>
+        </div>
       </section>
 
       {/* ABOUT */}
       <section
         id="about"
-        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-28"
+        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 sm:py-28"
       >
-        <div className="grid gap-12 md:grid-cols-[1fr_2fr]">
+        <div className="grid gap-10 md:grid-cols-[1fr_2fr] md:gap-12">
           <div>
             <p className="text-sm uppercase tracking-[0.2em] text-black/40">
               {t.about.label}
@@ -294,186 +373,168 @@ export default function Home() {
           </div>
         </div>
       </section>
-{/* PROJECTS */}
-<section
-  id="projects"
-  className="mx-auto max-w-6xl scroll-mt-24 px-6 py-28"
->
-  <div className="mb-14">
-    <p className="text-sm uppercase tracking-[0.2em] text-black/40">
-      {t.projects.label}
-    </p>
 
-    <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
-      {t.projects.title}
-    </h2>
-  </div>
+      {/* PROJECTS */}
+      <section
+        id="projects"
+        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 sm:py-28"
+      >
+        <div className="mb-12 sm:mb-14">
+          <p className="text-sm uppercase tracking-[0.2em] text-black/40">
+            {t.projects.label}
+          </p>
 
-  <div className="space-y-8">
+          <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+            {t.projects.title}
+          </h2>
+        </div>
 
-    {/* SYLLABAI */}
-    <article className="overflow-hidden rounded-[32px] border border-black/10 bg-white">
-      <div className="grid lg:grid-cols-2">
+        <div className="space-y-8">
+          {/* SYLLABAI */}
+          <article className="overflow-hidden rounded-[28px] border border-black/10 bg-white sm:rounded-[32px]">
+            <div className="grid lg:grid-cols-2">
+              {/* IMAGE */}
+              <div className="flex items-center bg-[#f3f5f8] p-5 sm:p-8">
+                <div className="group w-full overflow-hidden rounded-[18px] border border-black/10 bg-white shadow-sm sm:rounded-[20px]">
+                  <div className="aspect-[16/10] overflow-hidden">
+                    <Image
+                      src="/projects/syllabai-dashboard.png"
+                      alt="SyllabAI student dashboard"
+                      width={1800}
+                      height={1000}
+                      className="h-full w-full object-cover object-left transition duration-500 group-hover:scale-[1.02]"
+                    />
+                  </div>
+                </div>
+              </div>
 
-        {/* IMAGE */}
-        <div className="flex items-center bg-[#f3f5f8] p-5 sm:p-8">
-          <div className="group w-full overflow-hidden rounded-[20px] border border-black/10 bg-white shadow-sm">
-            <div className="aspect-[16/10] overflow-hidden">
-              <Image
-                src="/projects/syllabai-dashboard.png"
-                alt="SyllabAI student dashboard"
-                width={1800}
-                height={1000}
-                className="h-full w-full object-cover object-left transition duration-500 group-hover:scale-[1.02]"
-              />
+              {/* CONTENT */}
+              <div className="flex flex-col justify-center p-7 sm:p-12">
+                <p className="text-sm text-black/40">
+                  {t.projects.syllabaiType}
+                </p>
+
+                <h3 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+                  SyllabAI
+                </h3>
+
+                <p className="mt-6 max-w-xl leading-7 text-black/60">
+                  {t.projects.syllabaiDescription}
+                </p>
+
+                <div className="mt-7 flex flex-wrap gap-2">
+                  <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+                    Next.js
+                  </span>
+
+                  <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+                    TypeScript
+                  </span>
+
+                  <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+                    AI
+                  </span>
+
+                  <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+                    UI/UX
+                  </span>
+                </div>
+
+                <div className="mt-9">
+                  <a
+                    href="https://github.com/selinkeskinn/syllabai-final"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center rounded-full border border-black/15 px-4 py-2 text-sm font-medium transition hover:bg-black hover:text-white"
+                  >
+                    {t.projects.github} ↗
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </article>
 
-        {/* CONTENT */}
-        <div className="flex flex-col justify-center p-8 sm:p-12">
-          <p className="text-sm text-black/40">
-            {t.projects.syllabaiType}
-          </p>
+          {/* AGENTIC */}
+          <article className="overflow-hidden rounded-[28px] border border-black/10 bg-white sm:rounded-[32px]">
+            <div className="grid lg:grid-cols-2">
+              {/* CONTENT */}
+              <div className="order-2 flex flex-col justify-center p-7 sm:p-12 lg:order-1">
+                <p className="text-sm text-black/40">
+                  {t.projects.agenticType}
+                </p>
 
-          <h3 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-            SyllabAI
-          </h3>
+                <h3 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+                  Agentic Document Understanding
+                </h3>
 
-          <p className="mt-6 max-w-xl leading-7 text-black/60">
-            {t.projects.syllabaiDescription}
-          </p>
+                <p className="mt-6 max-w-xl leading-7 text-black/60">
+                  {t.projects.agenticDescription}
+                </p>
 
-          <div className="mt-7 flex flex-wrap gap-2">
-            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-              Next.js
-            </span>
+                <div className="mt-7 flex flex-wrap gap-2">
+                  <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+                    Python
+                  </span>
 
-            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-              TypeScript
-            </span>
+                  <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+                    Streamlit
+                  </span>
 
-            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-              AI
-            </span>
+                  <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+                    NLP
+                  </span>
 
-            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-              UI/UX
-            </span>
-          </div>
+                  <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
+                    AI
+                  </span>
+                </div>
 
-          <div className="mt-9">
-            <a
-              href="https://github.com/selinkeskinn/syllabai-final"
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-2 text-sm font-medium"
-            >
-              {t.projects.github}
+                <div className="mt-9 flex flex-wrap gap-3">
+                  <a
+                    href="https://agentic-document-understanding-system.streamlit.app/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition hover:opacity-75"
+                  >
+                    {t.projects.liveDemo} ↗
+                  </a>
 
-              <span className="transition-transform duration-200 group-hover:translate-x-1">
-                ↗
-              </span>
-            </a>
-          </div>
-        </div>
+                  <a
+                    href="https://github.com/selinkeskinn/agentic-document-understanding-system"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center rounded-full border border-black/15 px-4 py-2 text-sm font-medium transition hover:bg-black hover:text-white"
+                  >
+                    {t.projects.github} ↗
+                  </a>
+                </div>
+              </div>
 
-      </div>
-    </article>
-
-
-    {/* AGENTIC DOCUMENT UNDERSTANDING */}
-    <article className="overflow-hidden rounded-[32px] border border-black/10 bg-white">
-      <div className="grid lg:grid-cols-2">
-
-        {/* CONTENT */}
-        <div className="order-2 flex flex-col justify-center p-8 sm:p-12 lg:order-1">
-          <p className="text-sm text-black/40">
-            {t.projects.agenticType}
-          </p>
-
-          <h3 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Agentic Document Understanding
-          </h3>
-
-          <p className="mt-6 max-w-xl leading-7 text-black/60">
-            {t.projects.agenticDescription}
-          </p>
-
-          <div className="mt-7 flex flex-wrap gap-2">
-            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-              Python
-            </span>
-
-            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-              Streamlit
-            </span>
-
-            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-              NLP
-            </span>
-
-            <span className="rounded-full bg-black/5 px-3 py-1 text-sm">
-              AI
-            </span>
-          </div>
-
-          <div className="mt-9 flex flex-wrap gap-6">
-            <a
-              href="https://agentic-document-understanding-system.streamlit.app/"
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-2 text-sm font-medium"
-            >
-              {t.projects.liveDemo}
-
-              <span className="transition-transform duration-200 group-hover:translate-x-1">
-                ↗
-              </span>
-            </a>
-
-            <a
-              href="https://github.com/selinkeskinn/agentic-document-understanding-system"
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-2 text-sm font-medium"
-            >
-              {t.projects.github}
-
-              <span className="transition-transform duration-200 group-hover:translate-x-1">
-                ↗
-              </span>
-            </a>
-          </div>
-        </div>
-
-        {/* IMAGE */}
-        <div className="order-1 flex items-center bg-[#f3f5f8] p-5 sm:p-8 lg:order-2">
-          <div className="group w-full overflow-hidden rounded-[20px] border border-black/10 bg-white shadow-sm">
-            <div className="aspect-[16/10] overflow-hidden">
-              <Image
-                src="/projects/agentic-document.png"
-                alt="Agentic Document Understanding System"
-                width={1800}
-                height={1000}
-                className="h-full w-full object-cover object-left-top transition duration-500 group-hover:scale-[1.02]"
-              />
+              {/* IMAGE */}
+              <div className="order-1 flex items-center bg-[#f3f5f8] p-5 sm:p-8 lg:order-2">
+                <div className="group w-full overflow-hidden rounded-[18px] border border-black/10 bg-white shadow-sm sm:rounded-[20px]">
+                  <div className="aspect-[16/10] overflow-hidden">
+                    <Image
+                      src="/projects/agentic-document.png"
+                      alt="Agentic Document Understanding System"
+                      width={1800}
+                      height={1000}
+                      className="h-full w-full object-cover object-left-top transition duration-500 group-hover:scale-[1.02]"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </article>
         </div>
-
-      </div>
-    </article>
-
-  </div>
-</section>
+      </section>
 
       {/* EXPERIENCE */}
       <section
         id="experience"
-        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-28"
+        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 sm:py-28"
       >
-        <div className="grid gap-12 md:grid-cols-[1fr_2fr]">
+        <div className="grid gap-10 md:grid-cols-[1fr_2fr] md:gap-12">
           <div>
             <p className="text-sm uppercase tracking-[0.2em] text-black/40">
               {t.experience.label}
@@ -549,7 +610,7 @@ export default function Home() {
       {/* CONTACT */}
       <section
         id="contact"
-        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-28"
+        className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20 sm:py-28"
       >
         <div className="border-t border-black/10 pt-16">
           <div className="grid gap-12 md:grid-cols-2">
@@ -578,7 +639,7 @@ export default function Home() {
                 </p>
 
                 <div className="mt-2 flex items-center justify-between gap-4">
-                  <p className="text-lg font-medium sm:text-xl">
+                  <p className="break-all text-lg font-medium sm:text-xl">
                     selinkeskin11@gmail.com
                   </p>
 
@@ -637,7 +698,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="mx-auto flex max-w-6xl items-center justify-between px-6 py-10 text-sm text-black/40">
+      <footer className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-10 text-sm text-black/40 sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 Selin Keskin</p>
 
         <a
