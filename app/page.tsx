@@ -296,7 +296,7 @@ export default function Home() {
               href={
                 language === "tr"
   ? "/Selin-Keskin-CV-TR.pdf"
-  : "/Selin-Keskin-CV-EN-v2.pdf"
+  : "/Selin-Keskin-CV-EN-v3.pdf"
               }
               target="_blank"
               rel="noreferrer"
