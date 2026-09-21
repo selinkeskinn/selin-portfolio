@@ -295,8 +295,8 @@ export default function Home() {
             <a
               href={
                 language === "tr"
-                  ? "/Selin-Keskin-CV-TR.pdf"
-                  : "/Selin-Keskin-CV-EN.pdf"
+  ? "/Selin-Keskin-CV-TR.pdf"
+  : "/Selin-Keskin-CV-EN-v2.pdf"
               }
               target="_blank"
               rel="noreferrer"
